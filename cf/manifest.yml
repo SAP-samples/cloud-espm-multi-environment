@@ -1,0 +1,31 @@
+---
+applications:
+- name: espm-cloud-web-cf
+  host: <i-number>-espm-cloud-web-cf
+  memory: 1500M
+  timeout: 150
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  path: espm-cloud-web-cf/target/espm-cloud-web-cf.war
+  env:
+    CORS_DOMAIN: "cfapps.eu10.hana.ondemand.com"
+    DATABASE_TYPE: "<DB name>"
+    timeout: 180
+    TENANT_HOST_PATTERN: "^(.*).cfapps.eu10.hana.ondemand.com"
+    SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+  services:
+    - <DB instance name>
+    - espm-uaa
+- name: espm-ui-cf
+  host: i332371-espm-ui-cf
+  memory: 256M
+  path: espm-ui-cf
+  env:
+    TENANT_HOST_PATTERN: "^(.*).cfapps.eu10.hana.ondemand.com"
+    SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+    destinations: >
+      [
+        {"name":"securedest", "url":"https://<i-number>-espm-cloud-web-cf.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true },
+        {"name":"dest", "url":"https://<i-number>-espm-cloud-web-cf.cfapps.eu10.hana.ondemand.com"}
+      ]
+  services:
+    - espm-uaa

@@ -1,0 +1,193 @@
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sap.refapps</groupId>
+	<artifactId>espm</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- Versions and classifiers to be shared by all modules -->
+		<nw.cloud.jdk.version>1.8</nw.cloud.jdk.version>
+		<nw.cloud.sdk.version>3.54.34</nw.cloud.sdk.version>
+		<cxf.version>3.0.10</cxf.version>
+		<cmis.version>1.0.0</cmis.version>
+		<xs2security.version>0.29.1</xs2security.version>
+		<derby.version>10.14.2.0</derby.version>
+		<itutil.version>5.0.44</itutil.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Properties that hold the local server information required for local 
+			integration testing -->
+		<skipIntegrationTests>false</skipIntegrationTests>
+		<local.server.root>${project.build.directory}/server</local.server.root>
+		<local.server.host>localhost</local.server.host>
+		<local.proxy.settings>--http-proxy-host proxy --http-proxy-port 8080 --https-proxy-host proxy --https-proxy-port 8080</local.proxy.settings>
+		<sap.cloud.sdk.version>3.20.3.1</sap.cloud.sdk.version>
+		<sap.cloud.sdk.path>${project.build.directory}\install</sap.cloud.sdk.path>
+		<!-- Property that holds the source path to the backend destinations -->
+		<destinations.path>${basedir}/../destinations</destinations.path>
+		<m2e.jaxrs.activation>false</m2e.jaxrs.activation>
+		<local.server.jmx.port>9010</local.server.jmx.port>
+		<local.server.http.port>8080</local.server.http.port>
+		<local.server.https.port>8443</local.server.https.port>
+		<local.server.ajp.port>8009</local.server.ajp.port>
+		<olingo.version>2.0.7</olingo.version>
+		<slf4j.version>1.7.12</slf4j.version>
+		<junit.version>4.12</junit.version>
+		<derby.version>10.9.1.0</derby.version>
+		<eclipselink.version>2.6.4</eclipselink.version>
+		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+		<httpclient.version>4.5.2</httpclient.version>
+		<httpcore.version>4.4.5</httpcore.version>
+		<cxf-rt-frontend-jaxrs.version>2.7.18</cxf-rt-frontend-jaxrs.version>
+
+		<jackson-databind.version>2.8.7</jackson-databind.version>
+		<ngdbc.version>2.0.13</ngdbc.version>
+		<postgresql.version>9.4.1212</postgresql.version>
+		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+		<jettison.version>1.3.2</jettison.version>
+		<maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+		<maven-war-plugin.version>3.0.0</maven-war-plugin.version>
+		<maven-dependency-plugin.version>3.0.0</maven-dependency-plugin.version>
+		<build-helper-maven-plugin.version>1.12</build-helper-maven-plugin.version>
+		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+		<maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
+		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<neo-java-web-maven-plugin.version>2.110.19</neo-java-web-maven-plugin.version>
+		<build-helper-maven-plugin.version>1.12</build-helper-maven-plugin.version>
+		<!-- Code Quality Tools Versions -->
+		<maven-pmd-plugin.version>3.7</maven-pmd-plugin.version>
+		<maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
+		<findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+		<pdfbox.version>1.8.11</pdfbox.version>
+	</properties>
+	
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<organization>
+		<name>SAP SE</name>
+		<url>http://www.sap.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>SAP Cloud Platform</name>
+			<url>https://cloudplatform.sap.com</url>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com/</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Central Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>EclipseLink</id>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.12</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.inject</groupId>
+				<artifactId>guice</artifactId>
+				<version>4.2.0</version>
+
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${nw.cloud.jdk.version}</source>
+					<target>${nw.cloud.jdk.version}</target>
+					<showDeprecation>false</showDeprecation>
+					<showWarnings>false</showWarnings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>commons/espm-cloud-jpa</module>
+		<module>commons/espm-cloud-web</module>
+		<module>commons/espm-common-ui</module>
+		<module>neo/espm-cloud-web-neo</module>
+		<module>neo/html5-neo</module>
+		<module>cf/espm-cloud-web-cf</module>
+		<module>cf/espm-ui-cf</module>
+		<module>cf/approuter-proxy-only</module>
+		<module>cf/approuter-static-content</module>
+		<module>cf/approuter-html5repo</module>
+	</modules>
+	
+	<profiles>
+		<!-- Choose correct command line scripts for interaction with SAP HANA 
+			Cloud based on detected operating system -->
+		<profile>
+			<id>unix-scripts</id>
+			<activation>
+				<os>
+					<family>Unix</family>
+				</os>
+			</activation>
+			<properties>
+				<sap.cloud.console.shell>sh</sap.cloud.console.shell>
+				<sap.cloud.console.script>neo.sh</sap.cloud.console.script>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows-scripts</id>
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+			<properties>
+				<sap.cloud.console.shell>cmd</sap.cloud.console.shell>
+				<sap.cloud.console.script>/c neo.bat</sap.cloud.console.script>
+			</properties>
+		</profile>
+	</profiles>
+</project>

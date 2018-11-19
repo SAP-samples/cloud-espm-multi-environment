@@ -1,0 +1,5 @@
+resources/
+node
+.settings
+node_modules
+.project
