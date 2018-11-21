@@ -2,13 +2,14 @@ jQuery.sap.require("com.sap.espm.shop.model.format");
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"com/sap/espm/shop/model/formatter",
-	"sap/m/MessageToast"
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
 	
 	
-], function(Controller, formatter, MessageToast) {
+], function(Controller, formatter, MessageToast, MessageBox) {
 	"use strict";
 
-	var pdfURL;
+	var pdfURL, checkURL;
 	
 	
 	return Controller.extend("com.sap.espm.shop.controller.SalesOrder", {
@@ -165,6 +166,8 @@ sap.ui.define([
 			
 			pdfURL = "/espm-cloud-web-neo/CmisRead?objectId="+event.getSource().getBindingContext().getObject("InvoiceLink");
 			
+			checkURL = event.getSource().getBindingContext().getObject("InvoiceLink");
+			
 			this.getView().byId("detailPageId").setVisible(true);
 			
 			var context = event.getSource().getBindingContextPath();
@@ -222,7 +225,14 @@ sap.ui.define([
 			
 		},
 		handleDownload: function(){
+			if(checkURL === null)
+				{
+				var oBundle = this.getView().getModel('i18n').getResourceBundle();
+				MessageBox.information(oBundle.getText("soPopup.notImplemented"));
+				}
+			else{
 			window.open(pdfURL);
+			}
 		},
 		onNavBack: function(){
 			window.history.go(-1);

@@ -203,8 +203,8 @@ sap.ui.define([
 		
 		onOrdersButtonPressed: function(){
 			
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			MessageBox.information(oBundle.getText("soPopup.notImplemented"));
+			var oRouter = UIComponent.getRouterFor(this);
+			oRouter.navTo("SalesOrder");
 		}
 		
 		
