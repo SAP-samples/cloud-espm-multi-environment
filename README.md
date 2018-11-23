@@ -6,7 +6,7 @@ The ESPM (Enterprise Sales & Procurement Model) application is a reference appli
 # Description
 
 ## Business Scenario
-The business scenario is that of an eCommerce application that sells electronic products.
+The business scenario is that of an eCommerce application that sells electronics products.
 
 - The Customers can order products and provide reviews on the products.
 - The Retailer can then accept the sales orders created against orders created by customers. The Retailer can also update the product stock information.
@@ -14,7 +14,7 @@ The business scenario is that of an eCommerce application that sells electronic 
 ESPM application has 2 underlying applications
 
 - Webshop - this application is a web shopping app, which doesn't have any authentication
-- Retailer - this application is used by a retailer to manage stocks, approve/reject sales orders. We use authentication here
+- Retailer - this application is used by a retailer to manage stocks, approve/reject sales orders. A user needs to be authenticated and should have a retailer role to perform these operations.
 
 ![Architecture Diagram](/docs/architecture.jpg?raw=true)
 
@@ -23,15 +23,15 @@ ESPM application has 2 underlying applications
 - [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Maven](https://maven.apache.org/download.cgi)
 - [CF CLI](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/4ef907afb1254e8286882a2bdef0edf4.html)
-- If you do not yet have a SAP Cloud Platform trial or enterprise account, signup for a SAP Cloud Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html)
+- If you do not yet have a SAP Cloud Platform trial or enterprise account, signup for a SAP Cloud Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html).
 
-For Setting up the developer environment, Refer [Here](https://github.com/SAP/cloud-espm-v2#1-quick-start-guide)
+For Setting up the development environment, refer to the [quick start guide](https://github.com/SAP/cloud-espm-v2#1-quick-start-guide)
 
 # Download and Installation
 
 ## Build the application
 
-From the root directory, run the following Maven command
+From the root directory (i.e. cloud-espm-multi-environment), run the following Maven command
 ```
     mvn clean install
 
