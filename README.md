@@ -39,17 +39,17 @@ From the root directory (i.e. cloud-espm-multi-environment), run the following M
 This command builds the application and generates `war` file for both the `Neo` and `CF` environment.
 
 ```
-Note: When running the application in internet, follow the below steps to download the ngdbc driver to your local ~.m2 repository, as its not available in central maven
+Note: Follow the below steps to download the ngdbc driver to your local ~.m2 repository, as its not available in central maven
 
-1. You need to download the SAP Hana Cloud Platform SDK from here: https://tools.hana.ondemand.com/#cloud
-2. Take the latest "Java Web Tomcat 8" from the download section (a package starting with neo-).
-3. Unzip the archive to an arbitrary location on your devbox.
+1. You need to download the SAP Cloud Platform SDK from https://tools.hana.ondemand.com/#cloud
+2. Take the latest version of "Java Web Tomcat 8" (neo-java-web-sdk-3.70.9.3 or higher) from the download section.
+3. Unzip the archive to an arbitrary location on your laptop/desktop.
 4. Extract the JDBC driver (ngdbc.jar) from the archive (you will find the driver in the archive under: repository/.archive/lib/ngdbc.jar). The driver is closed source, so it is NOT available from public Maven repositories!
 5. Put the driver either to your local maven repository with:
 **mvn install:install-file -Dfile=<path-to-file> -DgroupId=com.sap.db.jdbc \**
     **-DartifactId=ngdbc -Dversion=2.0.13 -Dpackaging=jar**
 
-``` 
+```
 
 ## Running the application in NEO environment
 
@@ -228,4 +228,4 @@ Please use GitHub [issues](https://github.com/SAP/cloud-espm-multi-environment/i
 
 # License
 
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) file.
+Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) or [CREDITS](/CREDITS) file.
