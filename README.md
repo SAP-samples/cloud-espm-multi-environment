@@ -20,9 +20,9 @@ ESPM application has 2 underlying applications
 
 # Requirements
 
-- [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- [Maven](https://maven.apache.org/download.cgi)
-- [CF CLI](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/4ef907afb1254e8286882a2bdef0edf4.html)
+- [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (version 1.8.0_131 or higher)
+- [Maven](https://maven.apache.org/download.cgi) (version 3.3.9 or higher)
+- [CF CLI](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/4ef907afb1254e8286882a2bdef0edf4.html) (version 6.23.1 or higher)
 - If you do not yet have a SAP Cloud Platform trial or enterprise account, signup for a SAP Cloud Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html).
 
 For Setting up the development environment, refer to the [quick start guide](https://github.com/SAP/cloud-espm-v2#1-quick-start-guide)
@@ -30,26 +30,29 @@ For Setting up the development environment, refer to the [quick start guide](htt
 # Download and Installation
 
 ## Build the application
+A maven build of the application generates a separate `war` file for the `Neo` and `CF` environment.
 
-From the root directory (i.e. cloud-espm-multi-environment), run the following Maven command
-```
-    mvn clean install
 
-```
-This command builds the application and generates `war` file for both the `Neo` and `CF` environment.
 
-```
-Note: Follow the below steps to download the ngdbc driver to your local ~.m2 repository, as its not available in central maven
+_Note: Follow the below steps before the maven build to download the ngdbc driver to your local ~.m2 repository, as its not available in central maven repository_
 
-1. You need to download the SAP Cloud Platform SDK from https://tools.hana.ondemand.com/#cloud
+1. Download the SAP Cloud Platform SDK from https://tools.hana.ondemand.com/#cloud
 2. Take the latest version of "Java Web Tomcat 8" (neo-java-web-sdk-3.70.9.3 or higher) from the download section.
 3. Unzip the archive to an arbitrary location on your laptop/desktop.
 4. Extract the JDBC driver (ngdbc.jar) from the archive (you will find the driver in the archive under: repository/.archive/lib/ngdbc.jar). The driver is closed source, so it is NOT available from public Maven repositories!
-5. Put the driver either to your local maven repository with:
-**mvn install:install-file -Dfile=<path-to-file> -DgroupId=com.sap.db.jdbc \**
-    **-DartifactId=ngdbc -Dversion=2.0.13 -Dpackaging=jar**
+5. Put the driver to your local maven repository with maven command
+  ```
+    mvn install:install-file -Dfile=<path-to-file> -DgroupId=com.sap.db.jdbc
+      -DartifactId=ngdbc -Dversion=2.0.13 -Dpackaging=jar
+  ```
 
-```
+6. From the root directory (i.e. cloud-espm-multi-environment), run the following Maven command
+  ```
+    mvn clean install
+
+  ```
+
+This command builds the application and generates `war` for the `Neo` and `CF` environment.
 
 ## Running the application in NEO environment
 
