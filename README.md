@@ -151,48 +151,13 @@ For PostgreSQL – ```postgresql```
 
 Replace the `<DB instance name>` with the service instance that you have created for the database.
 
-#### 4 Enable security
-The security implementation in ESPM for Cloud Foundry is implemented using SAP's `java-container-security` library as mentioned in the help document [Configure Authentication for Java API Using Spring Security](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/be97ec4a799c4135884c62610fea2a8f.html). This library is available for download for SAP Customers from [SAP Support Portal](https://support.sap.com/en/index.html). Under downloads search for archive XS JAVA 1. More details mentioned in help document [Download and Consume Java Libraries](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.01/en-US/8783c06f6d5a48e791e7ad17d49a95c0.html).
 
-** Please note that if you are unable to download the XS JAVA 1 archive from SAP Support Portal you will not be able to enable security and can skip the below instruction and steps 6 and 7 **
 
-- After unzipping and running a maven build on the XS JAVA 1 check and note down the version of the java-container-security library.
-- Open the pom file of project [espm-cloud-web-cf](https://github.com/SAP/cloud-espm-multi-environment/blob/master/cf/espm-cloud-web-cf/pom.xml) and dependency for java-container-security
-```xml
-  <dependency>
-				<groupId>com.sap.xs2.security</groupId>
-				<artifactId>java-container-security</artifactId>
-				<version>{container.security.version}</version>
-		</dependency>
-```
-
-- Open and edit the [web.xml](https://github.com/SAP/cloud-espm-multi-environment/blob/master/cf/espm-cloud-web-cf/src/main/webapp/WEB-INF/web.xml) of the espm-cloud-web-cf project. Un comment the block shown below i.e. line 36 - 50
-
-```xml
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring-security.xml</param-value>
-	</context-param>
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-```
-- Navigate to the root folder of the project (i.e. cloud-espm-multi-environment) and do a maven build ` mvn clean install ` to recreate the binaries for CF application with the changes done for security in this step.
-
-#### 5. Push the application
+#### 4. Push the application
 
 ```cf push -f manifest.yml```
 
-#### 6. Setup Role collections
+#### 5. Setup Role collections
 
 
 For the application to work, the Retailer application needs the template role called "Retailer" assigned to the user.
@@ -207,7 +172,7 @@ For the application to work, the Retailer application needs the template role ca
 
  - Select the role template and assign the Role you have created in the previous step.
 
-#### 7. Assign Role to the user
+#### 6. Assign Role to the user
 
 We need to assign the role which we have created in the previous step to the user.
 
