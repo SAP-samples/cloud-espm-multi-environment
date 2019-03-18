@@ -17,7 +17,7 @@
 		<itutil.version>5.0.44</itutil.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -26,7 +26,8 @@
 		<skipIntegrationTests>false</skipIntegrationTests>
 		<local.server.root>${project.build.directory}/server</local.server.root>
 		<local.server.host>localhost</local.server.host>
-		<local.proxy.settings>--http-proxy-host proxy --http-proxy-port 8080 --https-proxy-host proxy --https-proxy-port 8080</local.proxy.settings>
+		<local.proxy.settings>--http-proxy-host proxy --http-proxy-port 8080
+			--https-proxy-host proxy --https-proxy-port 8080</local.proxy.settings>
 		<sap.cloud.sdk.version>3.20.3.1</sap.cloud.sdk.version>
 		<sap.cloud.sdk.path>${project.build.directory}\install</sap.cloud.sdk.path>
 		<!-- Property that holds the source path to the backend destinations -->
@@ -61,8 +62,12 @@
 		<neo-java-web-maven-plugin.version>2.110.19</neo-java-web-maven-plugin.version>
 		<build-helper-maven-plugin.version>1.12</build-helper-maven-plugin.version>
 		<pdfbox.version>1.8.11</pdfbox.version>
+		<tomcat-dbcp.version>8.0.24</tomcat-dbcp.version>
+		<google-guice.version>4.2.0</google-guice.version>
+		<cloud-security-xsuaa.version>1.1.0</cloud-security-xsuaa.version>
+		<commons-lang3.version>commons-lang3</commons-lang3.version>
 	</properties>
-	
+
 
 	<prerequisites>
 		<maven>3.0</maven>
@@ -100,7 +105,7 @@
 			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
 		</repository>
 	</repositories>
-	
+
 	<modules>
 		<module>commons/espm-cloud-jpa</module>
 		<module>commons/espm-cloud-web</module>
@@ -113,18 +118,166 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.7.12</version>
-				<scope>provided</scope>
-			</dependency>
+		<!-- Dependency injection -->
 			<dependency>
 				<groupId>com.google.inject</groupId>
 				<artifactId>guice</artifactId>
-				<version>4.2.0</version>
-
+				<version>${google-guice.version}</version>
 			</dependency>
+			
+			<!-- Logging dependencies -->
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<scope>compile</scope>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- JPA Persistence Dependencies -->
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>${eclipselink.version}</version>
+			</dependency>
+			<!-- SAP Cloud Platfrom Neo SDK dependencies -->
+			<dependency>
+				<groupId>com.sap.cloud</groupId>
+				<artifactId>neo-java-web-api</artifactId>
+				<version>${sap.cloud.sdk.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<!-- JEE Dependencies -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcore.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- OData Dependencies -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf-rt-frontend-jaxrs.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.olingo</groupId>
+				<artifactId>olingo-odata2-api</artifactId>
+				<version>${olingo.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.olingo</groupId>
+				<artifactId>olingo-odata2-core</artifactId>
+				<version>${olingo.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.olingo</groupId>
+				<artifactId>olingo-odata2-jpa-processor-api</artifactId>
+				<version>${olingo.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.olingo</groupId>
+				<artifactId>olingo-odata2-api-annotation</artifactId>
+				<version>${olingo.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.olingo</groupId>
+				<artifactId>olingo-odata2-jpa-processor-core</artifactId>
+				<version>${olingo.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- CMIS and PDFBox Dependencies -->
+			<dependency>
+				<groupId>org.apache.pdfbox</groupId>
+				<artifactId>pdfbox-app</artifactId>
+				<version>${pdfbox.version}</version>
+			</dependency>
+			<!-- Test Dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jettison</groupId>
+				<artifactId>jettison</artifactId>
+				<version>${jettison.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
+			<!-- Persistency -->
+			<dependency>
+				<groupId>com.sap.db.jdbc</groupId>
+				<artifactId>ngdbc</artifactId>
+				<version>${ngdbc.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-dbcp2</artifactId>
+				<version>${commons-dbcp2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-dbcp</artifactId>
+				<version>${tomcat-dbcp.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+			</dependency>
+			<!-- Security -->
+			<dependency>
+				<groupId>com.sap.cloud.security.xsuaa</groupId>
+				<artifactId>api</artifactId>
+				<version>${cloud-security-xsuaa.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -249,35 +402,4 @@
 		</pluginManagement>
 	</build>
 
-
-	
-	
-	<profiles>
-		<!-- Choose correct command line scripts for interaction with SAP  
-			Cloud Platform based on detected operating system -->
-		<profile>
-			<id>unix-scripts</id>
-			<activation>
-				<os>
-					<family>Unix</family>
-				</os>
-			</activation>
-			<properties>
-				<sap.cloud.console.shell>sh</sap.cloud.console.shell>
-				<sap.cloud.console.script>neo.sh</sap.cloud.console.script>
-			</properties>
-		</profile>
-		<profile>
-			<id>windows-scripts</id>
-			<activation>
-				<os>
-					<family>Windows</family>
-				</os>
-			</activation>
-			<properties>
-				<sap.cloud.console.shell>cmd</sap.cloud.console.shell>
-				<sap.cloud.console.script>/c neo.bat</sap.cloud.console.script>
-			</properties>
-		</profile>
-	</profiles>
 </project>

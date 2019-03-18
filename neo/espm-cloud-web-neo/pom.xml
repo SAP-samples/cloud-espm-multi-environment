@@ -14,11 +14,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.sap.refapps</groupId>
-			<artifactId>espm-cloud-jpa</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.sap.refapps</groupId>
 			<artifactId>espm-cloud-web</artifactId>
@@ -35,7 +31,6 @@
 		<dependency>
 			<groupId>com.sap.cloud</groupId>
 			<artifactId>neo-java-web-api</artifactId>
-			<version>${sap.cloud.sdk.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -43,52 +38,36 @@
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox-app</artifactId>
-			<version>${pdfbox.version}</version>
 		</dependency>
 
-		<!-- Test dependencies -->
+
+		<!-- Test Dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<!-- <version>4.12</version> -->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-			<version>${derby.version}</version>
-			<!-- <version>10.9.1.0</version> -->
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
-			<version>${jettison.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Guice -->
-
 		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<!-- <version>3.0-rc2</version> -->
-
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.7</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
 	</dependencies>
 
+	
+	
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -146,192 +125,9 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-dependency-plugin
-										</artifactId>
-										<versionRange>
-											[2.8,)
-										</versionRange>
-										<goals>
-											<goal>
-												unpack-dependencies
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.codehaus.mojo
-										</groupId>
-										<artifactId>
-											build-helper-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.7,)
-										</versionRange>
-										<goals>
-											<goal>
-												reserve-network-port
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
-
-	<profiles>
-		<!-- The profile "test" is used to run integration tests-->
-		<profile>
-			<id>test</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.sap.cloud</groupId>
-						<artifactId>neo-java-web-maven-plugin</artifactId>
-						<version>${neo-java-web-maven-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>install-sdk</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>install-sdk</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<sdkInstallPath>${sap.cloud.sdk.path}</sdkInstallPath>
-						</configuration>
-					</plugin>
-					<!-- Find free random ports for the local test server -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>reserve-network-port</id>
-								<goals>
-									<goal>reserve-network-port</goal>
-								</goals>
-								<phase>validate</phase>
-								<configuration>
-									<portNames>
-										<portName>local.server.console.port</portName>
-										<portName>local.server.jmx.port</portName>
-										<portName>local.server.http.port</portName>
-										<portName>local.server.https.port</portName>
-										<portName>local.server.ajp.port</portName>
-									</portNames>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>prepare-local-server</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<target>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} install-local --location ${local.server.root} --jmx-port ${local.server.jmx.port} --http-port ${local.server.http.port} --https-port ${local.server.https.port} --ajp-port ${local.server.ajp.port} ${local.proxy.settings}" />
-										</exec>
-										<copy file="${project.build.directory}/${project.artifactId}.war"
-											todir="${local.server.root}/webapps" />
-										<copy
-											file="${project.basedir}/src/test/resources/com/sap/espm/model/web/neousers.json"
-											todir="${local.server.root}/config_master/com.sap.security.um.provider.neo.local">
-										</copy>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} start-local --location ${local.server.root} --shutdown-port ${local.server.console.port} --wait-url http://${local.server.host}:${local.server.http.port}/${project.artifactId}/ --wait-url-timeout 300" />
-										</exec>
-									</target>
-								</configuration>
-							</execution>
-							<execution>
-								<id>cleanup-local-server</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<target>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} stop-local --shutdown-port ${local.server.console.port}" />
-										</exec>
-									</target>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>${maven-failsafe-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>execute-local-integration-tests</id>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-								<configuration>
-									<systemPropertyVariables>
-										<integration.test.server.url>http://${local.server.host}:${local.server.http.port}</integration.test.server.url>
-									</systemPropertyVariables>
-								</configuration>
-							</execution>
-							<execution>
-								<id>verify-local-integration-tests</id>
-								<goals>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	
+	
+	
 </project>

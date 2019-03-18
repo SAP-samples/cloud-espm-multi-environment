@@ -27,14 +27,12 @@ public class EspmServiceFactory extends ODataJPAServiceFactory {
 		ODataJPAContext oDataJPAContext = this.getODataJPAContext();
 		EntityManagerFactory emf;
 		try {
-			System.out.println("Service Factory entered");
 			//emf = JpaEntityManagerFactory.getEntityManagerFactory();
 			emf = PersistenceAdapter.getEntityManagerFactory();
 			oDataJPAContext.setEntityManagerFactory(emf);
 			oDataJPAContext.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
 			oDataJPAContext.setJPAEdmExtension(new EspmProcessingExtension());
 			oDataJPAContext.setJPAEdmMappingModel("EspmEdmMapping.xml");
-			System.out.println("Service Factory Called");
 			return oDataJPAContext;
 		} catch (Exception e) {
 			e.printStackTrace();

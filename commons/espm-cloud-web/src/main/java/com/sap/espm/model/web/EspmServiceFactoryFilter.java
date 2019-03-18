@@ -44,7 +44,6 @@ public class EspmServiceFactoryFilter implements Filter {
 				String url = oCntxt.getRequestURI().toString();
 				if (!url.contains("/secure/")) {
 					if (isPathRestricted(oCntxt)) {
-						System.out.println("PAth restrictee");
 						HttpServletResponse httpResp = (HttpServletResponse) response;
 						httpResp.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 								"Access denied to the secure entity, use secure url /espm.svc/secure");
