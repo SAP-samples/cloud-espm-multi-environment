@@ -196,4 +196,4 @@ Please use GitHub [issues](https://github.com/SAP/cloud-espm-multi-environment/i
 
 # License
 
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) or [CREDITS](/CREDITS) file.
+Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) or [CREDITS](/CREDITS) file.
