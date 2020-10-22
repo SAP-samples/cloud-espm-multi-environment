@@ -1,4 +1,4 @@
-
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-espm-multi-environment)](https://api.reuse.software/info/github.com/SAP-samples/cloud-espm-multi-environment)
 # ESPM
 
 The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Cloud Platform with the Java runtime. This version of the ESPM application(cloud-espm-multi-environment) showcases how to adapt a ESPM application developed to run on SAP Cloud Platform Neo Environment to run on SAP Cloud Platform Cloud Foundry (CF) Environment as well. The adapted application has one code-base for running on both Neo and CF environment.
