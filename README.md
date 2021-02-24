@@ -1,7 +1,7 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-espm-multi-environment)](https://api.reuse.software/info/github.com/SAP-samples/cloud-espm-multi-environment)
 # ESPM
 
-The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Cloud Platform with the Java runtime. This version of the ESPM application(cloud-espm-multi-environment) showcases how to adapt a ESPM application developed to run on SAP Cloud Platform Neo Environment to run on SAP Cloud Platform Cloud Foundry (CF) Environment as well. The adapted application has one code-base for running on both Neo and CF environment.
+The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Business Technology Platform (BTP) with the Java runtime. This version of the ESPM application(cloud-espm-multi-environment) showcases how to adapt a ESPM application developed to run on SAP BTP Neo Environment to run on SAP BTP Cloud Foundry (CF) Environment as well. The adapted application has one code-base for running on both Neo and CF environment.
 
 # Description
 
@@ -23,7 +23,7 @@ ESPM application has 2 underlying applications
 - [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (version 1.8.0_131 or higher)
 - [Maven](https://maven.apache.org/download.cgi) (version 3.3.9 or higher)
 - [Cloud Foundry CLI](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/4ef907afb1254e8286882a2bdef0edf4.html) (version 6.23.1 or higher)
-- If you do not yet have a SAP Cloud Platform trial or enterprise account, signup for a SAP Cloud Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html).
+- If you do not yet have a SAP Businsess Technology Platform trial or enterprise account, signup for a SAP Business Technology Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html).
 
 For Setting up the development environment, refer to the [quick start guide](https://github.com/SAP/cloud-espm-v2#1-quick-start-guide)
 
@@ -36,7 +36,7 @@ A maven build of the application generates a separate `war` file for the `Neo` a
 
 _Note: Follow the below steps before the maven build to download the ngdbc driver to your local ~.m2 repository, as its not available in central maven repository_
 
-1. Download the SAP Cloud Platform SDK from https://tools.hana.ondemand.com/#cloud
+1. Download the SAP Business Technology Platform SDK from https://tools.hana.ondemand.com/#cloud
 2. Take the latest version of "Java Web Tomcat 8" (neo-java-web-sdk-3.70.9.3 or higher) from the download section.
 3. Unzip the archive to an arbitrary location on your laptop/desktop.
 4. Extract the JDBC driver (ngdbc.jar) from the archive (you will find the driver in the archive under: repository/.archive/lib/ngdbc.jar). The driver is closed source, so it is NOT available from public Maven repositories!
@@ -70,7 +70,7 @@ Open the hanatrial account cockpit and upload the war file as follows.
 
 ### 2. Configure Roles
 
-   - Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP Cloud Platform user to access the Retailer UI
+   - Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP Business Technology Platform user to access the Retailer UI
 
     You can access the application from the URL
 
