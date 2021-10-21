@@ -23,7 +23,7 @@ ESPM application has 2 underlying applications
 - [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (version 1.8.0_131 or higher)
 - [Maven](https://maven.apache.org/download.cgi) (version 3.3.9 or higher)
 - [Cloud Foundry CLI](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/4ef907afb1254e8286882a2bdef0edf4.html) (version 6.23.1 or higher)
-- If you do not yet have a SAP Businsess Technology Platform trial or enterprise account, signup for a SAP Business Technology Platform trial account by following the [documentation](https://cloudplatform.sap.com/try.html).
+- If you do not yet have a SAP Businsess Technology Platform trial or enterprise account, signup for a SAP Business Technology Platform trial account by following the [documentation](https://developers.sap.com/tutorials/hcp-create-trial-account.html).
 
 For Setting up the development environment, refer to the [quick start guide](https://github.com/SAP/cloud-espm-v2#1-quick-start-guide)
 
