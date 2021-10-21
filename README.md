@@ -62,7 +62,7 @@ The `war` file for the NEO environment can be found at `neo/espm-cloud-web-neo/t
 
 Open the hanatrial account cockpit and upload the war file as follows.
 
-- Go to SAP CP Cockpit --> Click on Java Application under Applications --> Click on Deploy Application
+- Go to SAP BTP Cockpit --> Click on Java Application under Applications --> Click on Deploy Application
 
 - Add War File Location, Give Application Name "espm", select Runtime Name "Java Web Tomcat 8" and JVM Version as "JRE 8"
 
@@ -82,7 +82,7 @@ Open the hanatrial account cockpit and upload the war file as follows.
 
 ### 3. Bind the database to espm application and start espm application
 
-Below is the process to bind the database to the java application in HCP trial account using a Shared HANA database
+Below is the process to bind the database to the java application in BTP trial account using a Shared HANA database
 
    - In the cockpit, select an account and choose Persistence -> Databases & Schemas -> in the navigation area.
    - Click on the new button
