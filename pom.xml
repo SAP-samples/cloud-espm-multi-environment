@@ -47,7 +47,7 @@
 		<httpcore.version>4.4.5</httpcore.version>
 		<cxf-rt-frontend-jaxrs.version>2.7.18</cxf-rt-frontend-jaxrs.version>
 
-		<jackson-databind.version>[2.9.10,)</jackson-databind.version>
+		<jackson-databind.version>2.13.1</jackson-databind.version>
 		<ngdbc.version>2.0.13</ngdbc.version>
 		<postgresql.version>42.3.3</postgresql.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
@@ -132,11 +132,6 @@
 				<artifactId>slf4j-simple</artifactId>
 				<version>${slf4j.version}</version>
 				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
